@@ -18,7 +18,7 @@ The input file (a context in burmeister format) and the output directory must be
 
 ## Examples
 
-   $ java -jar scale-complexes-0.1.0-SNAPSHOT-standalone.jar -l ../../testing-data/Animals.ctx -s ../../example-complexes
+    $ java -jar scale-complexes-0.1.0-SNAPSHOT-standalone.jar -l ../../testing-data/Animals.ctx -s ../../example-complexes
 
 ## License
 
