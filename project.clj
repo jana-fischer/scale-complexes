@@ -16,6 +16,6 @@
                  [conexp-clj            "2.3.1-SNAPSHOT"] ;TODO: change when ordinal-motifs is in clojars 
                  [org.clojure/data.json "2.4.0"]]
   :main ^:skip-aot scale-complexes.core
-  :target-path "target/%s"
+  :target-path "builds/%s"
   :profiles {:uberjar {:aot :all
                        :jvm-opts ["-Dclojure.compiler.direct-linking=true"]}})

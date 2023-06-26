@@ -11,3 +11,9 @@ pom.xml.asc
 /.prepl-port
 .hgignore
 .hg/
+
+# ignore everything in builds except standalone
+builds/*
+!builds/uberjar
+builds/uberjar/*
+!builds/uberjar/scale-complexes-*-standalone.jar
