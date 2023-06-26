@@ -1,24 +1,24 @@
 # scale-complexes
 
-FIXME: description
-
-## Installation
-
-Download from http://example.com/FIXME.
+Compute scale complexes of formal contexts.
 
 ## Usage
 
-FIXME: explanation
+The standalone jar can be found in `builds/uberjar`. It can be used with: 
 
-    $ java -jar scale-complexes-0.1.0-standalone.jar [args]
+    $ java -jar scale-complexes-0.1.0-SNAPSHOT-standalone.jar [args]
 
-## Options
+The input file (a context in burmeister format) and the output directory must be specified in `args`. Available command-line arguments:
 
-FIXME: listing of options this app accepts.
+```
+  -l, --load FILE    Load file path (for context file in burmeister format).
+  -s, --save FOLDER  Save folder path (for resulting scale-complex files).
+  -h, --help
+```
 
 ## Examples
 
-...
+   $ java -jar scale-complexes-0.1.0-SNAPSHOT-standalone.jar -l ../../testing-data/Animals.ctx -s ../../example-complexes
 
 ## License
 

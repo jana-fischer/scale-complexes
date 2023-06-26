@@ -17,8 +17,8 @@
 (def cli-options
   [["-l" "--load FILE" "Load file path (for context file in burmeister format)."
     :validate [#(.exists (io/file %)) "The file does not exists."]]
-   ["-s" "--save FILE" "Save folder path (for resulting scale-complex files)."]
-   ["-h" "--help" "help"]])
+   ["-s" "--save FOLDER" "Save folder path (for resulting scale-complex files)."]
+   ["-h" "--help"]])
 
 (defn write-complex
   [[file complex]]
@@ -37,20 +37,22 @@
 
     (cond 
       (contains? options :help)
-      (println summary))
-    
-    (assert (:load options) "Input file (-l, --load) must be specified.")
-    (let [ctx (read-context (:load options) :burmeister)
-          complex (make-scale-complex ctx)
-          scale-types [:nominal :ordinal :interordinal :contranominal :crown]
-          complexes (map #(get-complex complex %) scale-types)]
+      (println summary)
       
-      (assert (:save options) "Output file (-s, --save) must be specified.")
-      (if-not (.exists (io/file (:save options)))
-        (.mkdir (java.io.File. (:save options))))
-      (let [files (map #(str (:save options) "/" (name %) ".json") scale-types)
-            file-complex-zips (map vector files complexes)]
-        (doseq [fc file-complex-zips]
-          (write-complex fc)))))
+      :else
+      (do 
+        (assert (:load options) "Input file (-l, --load) must be specified.")
+        (let [ctx (read-context (:load options) :burmeister)
+              complex (make-scale-complex ctx)
+              scale-types [:nominal :ordinal :interordinal :contranominal :crown]
+              complexes (map #(get-complex complex %) scale-types)]
+          
+          (assert (:save options) "Output file (-s, --save) must be specified.")
+          (if-not (.exists (io/file (:save options)))
+            (.mkdir (java.io.File. (:save options))))
+          (let [files (map #(str (:save options) "/" (name %) ".json") scale-types)
+                file-complex-zips (map vector files complexes)]
+            (doseq [fc file-complex-zips]
+              (write-complex fc)))))))
   
   (System/exit 0))
